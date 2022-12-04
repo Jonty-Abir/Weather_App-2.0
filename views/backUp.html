@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Qahiri&family=Scheherazade+New&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        font-family: "Quicksand", "sans-serif";
+      }
+
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        height: 100vh;
+        width: 100vw;
+      }
+
+      html,
+      body {
+        font-size: 62.5%;
+        height: 100%;
+      }
+      html {
+        background: #eee;
+      }
+
+      .box {
+        width: 28vw;
+        height: 80vh;
+        border-radius: 0.5rem;
+        box-shadow: 0 0.2rem 3rem rgb(0, 0, 0.2);
+        background: #a5bbdd;
+        overflow: hidden;
+        transform: translate3d(0, 0, 0);
+        min-width: 20rem;
+        min-height: 35rem;
+      }
+      .wave {
+        opacity: 0.3;
+        position: absolute;
+        top: 120%;
+        left: 50%;
+        background: white;
+        width: 65rem;
+        height: 58rem;
+        margin-left: -33rem;
+        margin-top: -20rem;
+        transform-origin: 50% 48%;
+        border-radius: 43%;
+        animation: drift 3000ms infinite linear;
+        z-index: 1;
+      }
+      .wave.-three {
+        animation: drift 5000ms infinite linear;
+        z-index: 2 !important;
+        opacity: 0.2;
+      }
+      .wave.-two {
+        animation: drift 7000ms infinite linear;
+        opacity: 0.1;
+        z-index: 3 !important;
+      }
+
+      .box:after {
+        content: "";
+        display: block;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 11;
+        transform: translate(0, 0, 0);
+      }
+
+      @keyframes drift {
+        from {
+          transform: rotate(0deg);
+        }
+        from {
+          transform: rotate(360deg);
+        }
+      }
+
+      .info {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 45%;
+        z-index: 4;
+      }
+
+      .location {
+        margin-top: 1.5rem;
+        text-align: center;
+        font-weight: 600;
+        font-size: 3rem;
+        font-size: 400;
+      }
+
+      .fa-street-view {
+        animation: rotates 3s linear infinite alternate;
+      }
+      @keyframes rotates {
+        from {
+          transform: translateX(-0.5rem);
+        }
+        to {
+          transform: translateX(0.5rem);
+        }
+      }
+      #date {
+        text-align: center;
+        margin-top: 0.5rem;
+        color: #57606f;
+        font-size: 1.2rem;
+        font-weight: 300;
+        text-transform: uppercase;
+      }
+      .temp {
+        margin-top: 2.5rem;
+        text-align: center;
+        font-size: 3rem;
+      }
+
+      .tempmin_max {
+        text-align: center;
+        margin-top: 0.3rem;
+        font-weight: 300;
+        font-size: 1.2rem;
+        color: #57606f;
+      }
+
+      #weathercon {
+        height: 55%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 3em;
+        margin-top: 5rem;
+      }
+
+      .input {
+        width: 60%;
+        clear: right;
+        margin: auto;
+        margin-top: 8rem;
+        background-color: #eeefee;
+        border: 3px solid #84a2fa;
+        border-radius: 4px;
+        display: block;
+        display: flex;
+        font-weight: 600;
+        color: black;
+      }
+
+      .statusinfo {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 45%;
+        z-index: 4;
+        color: black;
+      }
+      .status {
+        margin-top: 1.5rem;
+        text-align: center;
+        font-weight: 600;
+        font-size: 3rem;
+        font-size: 400;
+        color: black;
+      }
+
+      #weathercon .fas {
+        font-size: 6rem;
+        animation: fas-anime 3s linear infinite alternate;
+      }
+
+      @keyframes fas-anime {
+        from {
+          translate: scale(0.8);
+        }
+        to {
+          transform: scale(1.2);
+        }
+      }
+
+      /* laptop */
+
+      @media (min-width: 1024px) {
+        body {
+          background-color: #adeff6;
+        }
+      }
+      /* tablet */
+      @media (min-width: 761px) and (max-width: 1023px) {
+        body {
+          background-color: rgb(146, 249, 249);
+        }
+
+        .card {
+          width: 60vw;
+          height: 80%;
+        }
+        .box {
+          width: 100%;
+          height: 100%;
+        }
+        .wave {
+          opacity: 0.3;
+          position: absolute;
+          top: 120%;
+          left: 50%;
+          background: white;
+          width: 100rem;
+          height: 90rem;
+          margin-left: -50rem;
+          margin-top: -20rem;
+          transform-origin: 50% 48%;
+          border-radius: 43%;
+          animation: drift 3000ms infinite linear;
+          z-index: 1;
+        }
+      }
+      /* mobile */
+      @media (max-width: 760px) {
+        body {
+          background-color: #a5bbdd;
+        }
+        .input {
+          width: 65%;
+          clear: right;
+          margin: auto;
+          margin-top: 12rem;
+          background-color: #eeefee;
+          border: 3px solid #84a2fa;
+          border-radius: 4px;
+          display: block;
+          display: flex;
+          font-weight: 600;
+          color: black;
+          font-size: 1.7rem;
+        }
+        .card {
+          width: 100%;
+          height: 100%;
+        }
+        .box {
+          width: 100%;
+          height: 100%;
+          /* background-color: #f1e908; */
+        }
+
+        .wave {
+          opacity: 0.3;
+          position: absolute;
+          top: 120%;
+          left: 50%;
+          background: white;
+          width: 100rem;
+          height: 90rem;
+          margin-left: -50rem;
+          margin-top: -30rem;
+          transform-origin: 50% 48%;
+          border-radius: 43%;
+          animation: drift 3000ms infinite linear;
+          z-index: 1;
+        }
+      }
+    </style>
+    <title>Weather API</title>
+  </head>
+  <body>
+    <div class="card">
+      <div class="box">
+        <div class="icon" style="margin-top: 4rem">
+          <i class="fa-solid fa-cloud-moon"><span>Wind: 2.00 Km/h</span></i>
+        </div>
+        <div class="wave -one"></div>
+        <div class="wave -two"></div>
+        <div class="wave -three"></div>
+        <div class="Class">
+          <form action="#" id="form">
+            <input
+              type="text"
+              placeholder="🔍  ENTER A CITY  🔍"
+              class="input form-control"
+              style="font-family: 'Quicksand', 'sans-serif'; text-align: center"
+            />
+          </form>
+        </div>
+        <p
+          class="error"
+          style="
+            display: none;
+            width: 60%;
+            font-size: 12px;
+            background-color: rgb(247, 247, 90);
+            text-align: center;
+            margin: auto;
+            margin-top: 4rem;
+            color: red;
+          "
+        >
+          Your City was Not Found! try again.
+        </p>
+        <div
+          id="weathercon"
+          class="weathericon"
+          style="box-sizing: border-box; margin: auto; padding-bottom: 8rem"
+        >
+          <i class="fas fa-solid fa-cloud-sun"></i>
+        </div>
+
+        <div class="info">
+          <h2 class="location">
+            <i class="fa-solid fa-street-view" style="color: white"></i>Howrah,
+            IN
+          </h2>
+          <p id="date">WED | AUG 7 | 10.00</p>
+          <h1 class="temp">28 &deg;C</h1>
+          <h3 class="tempmin_max">Min 28&deg;C |Max 28&deg;C</h3>
+          <b>
+            <i>
+              <h6
+                style="text-align: center; font-size: 12px; font-weight: bolder"
+              >
+                &copy;Abir 2022
+              </h6>
+            </i>
+          </b>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const date = document.getElementById("date");
+      let weathercon = document.getElementById("weathercon");
+      let stat = document.getElementById("stat");
+      const form = document.getElementById("form");
+      let inputV = document.querySelector(".input");
+      const icon = document.querySelector(".icon");
+      var windStatus = "0";
+
+      const amPm = () => {
+        let date = new Date();
+        let hours = date.getHours();
+        let mins = date.getMinutes();
+        let periods = "AM";
+        if (hours > 11) {
+          periods = "PM";
+          if (hours > 12) hours -= 12;
+        }
+        if (mins < 10) {
+          mins = "0" + mins;
+        }
+        return `${hours}:${mins}:${periods}`;
+      };
+
+      function dayNight() {
+        let time = amPm();
+        let returnHtml;
+        let date = new Date();
+        let hours = date.getHours();
+        let hours2 = date.getHours();
+        let mins = date.getMinutes();
+        let periods;
+        // console.log(hours, time);
+        if (hours > 11) {
+          periods = "PM";
+          if (hours > 12) hours -= 12;
+          //console.log(hours, "from PM");
+          if (hours > 6) {
+            returnHtml = `<i class="fa-solid fa-moon" style="font-size: 3.5rem;float: right;margin-right: 2rem;margin-top: -24px;"><span style="font-size: 10px; display: block">Wind: ${windStatus} Km/h</span></i>`;
+          }
+        }
+
+        // AM
+        if (hours2 < 11) {
+          periods = "AM";
+          if (hours2 > 12) hours2 -= 12;
+          //console.log(hours2, "form Am");
+          if (hours2 >= 4) {
+            returnHtml = `<i class="fa-solid fa-sun" style="color: #f1e908;font-size: 4rem;float: right;margin-right: 1.5rem;margin-top: -24px;"><span style="color:black;font-size: 10px; display: block">Wind: ${windStatus} Km/h</span></i>`;
+          }
+        }
+
+        return returnHtml;
+      }
+      document.querySelector(".icon").innerHTML = dayNight();
+
+      async function getValue() {
+        let data = await fetch("/", {
+          method: "post",
+          body: JSON.stringify({
+            city: inputV.value,
+          }),
+          headers: {
+            "Content-type": "application/json; charset=UTF-8",
+          },
+        });
+        let response = await data.json();
+      }
+
+      inputV.addEventListener("keypress", function (event) {
+        if (event.key === "Enter") {
+          event.preventDefault();
+          getValue();
+          // console.log(inputV.value);
+          location.reload();
+        }
+      });
+
+      const tepmStatus = "Haze";
+
+      if (tepmStatus == "Sunny") {
+        weathercon.innerHTML = `<i class="fas fa-duotone fa-sun"style='color: #f1e908'></i><div style="margin-left: 6px;"><i><b>${tepmStatus}</i></div>`; //ok
+      } else if (tepmStatus == "Clouds") {
+        weathercon.innerHTML = `<i class="fas fa-duotone fa-cloud-sun"style='color: #f1e908'></i><div style="margin-left: 6px;"><i><b>${tepmStatus}</i></div>`; //ok
+      } else if (tepmStatus == "Haze") {
+        weathercon.innerHTML = `<i class='fas fa-solid fa-smog'style='color: #f1e908';></i><br> <div style="margin-left: 7px;"><i><b>${tepmStatus}</i></div>`; //ok
+      } else if (tepmStatus == "Rain") {
+        weathercon.innerHTML = `<i class="fas fa-duotone fa-cloud-showers-water"></i><div style="margin-left: 6px;"><i><b>${tepmStatus}</i></div>`; //ok
+      } else if (tepmStatus == "Clear") {
+        weathercon.innerHTML = `<i class="fas fa-duotone fa-sun"style='color: #f1e908'></i><div style="margin-left: 6px;"><i><b>${tepmStatus}</i></div>`; //ok
+      } else if (tepmStatus == "Thunderstorm") {
+        weathercon.innerHTML = `<i class="fas fa-duotone fa-cloud-bolt"></i><div style="margin-left: 6px;"><i><b>${tepmStatus}</i></div>`; //ok
+      }
+
+      const getDate = new Date();
+      const currentTime = () => {
+        const dayName = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+        const day = dayName[getDate.getDay()];
+        return day;
+      };
+
+      const currentMonth = () => {
+        const getMonth = getDate.getMonth();
+        let monthName = [
+          "Jan",
+          "Fab",
+          "Mar",
+          "Apr",
+          "May",
+          "Jun",
+          "Jul",
+          "Aug",
+          "Sep",
+          "Oct",
+          "Nov",
+          "Dec",
+        ];
+        let hours = getDate.getHours();
+        let mins = getDate.getMinutes();
+        const date = getDate.getDate();
+
+        let periods = "AM";
+        if (hours > 11) {
+          periods = "PM";
+          if (hours > 12) hours -= 12;
+        }
+        if (mins < 10) {
+          mins = "0" + mins;
+        }
+        return `${monthName[getMonth]} ${date} | ${hours} ${mins} ${periods}`;
+      };
+      date.textContent = `${currentTime()} | ${currentMonth()}`;
+    </script>
+  </body>
+</html>
