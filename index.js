@@ -120,6 +120,10 @@ app.get("/", async (req, res, next) => {
   }
 });
 
+app.get("/abir",(req,res)=>{
+  res.status(200).json({msg:"hey i am abir santra"});
+});
+
 app.use((req, res) => {
   res.status(404).send("NotFound!");
 });
