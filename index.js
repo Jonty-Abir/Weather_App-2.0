@@ -120,6 +120,18 @@ app.get("/", async (req, res, next) => {
   }
 });
 
+app.use((req, res) => {
+  res.status(404).send("NotFound!");
+});
+
+app.use((err, req, res, next) => {
+  if (err) {
+    console.log(err);
+    res.status(505).send("There was a server side problem.");
+  }
+  next();
+});
+
 app.listen(process.env.PORT, () =>
   console.log(`server listening on ${process.env.PORT}`)
 );
